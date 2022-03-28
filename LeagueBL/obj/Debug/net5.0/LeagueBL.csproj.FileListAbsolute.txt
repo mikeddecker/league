@@ -1,0 +1,12 @@
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\bin\Debug\net5.0\LeagueBL.deps.json
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\bin\Debug\net5.0\LeagueBL.dll
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\bin\Debug\net5.0\ref\LeagueBL.dll
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\bin\Debug\net5.0\LeagueBL.pdb
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\LeagueBL.csproj.AssemblyReference.cache
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\LeagueBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\LeagueBL.AssemblyInfoInputs.cache
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\LeagueBL.AssemblyInfo.cs
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\LeagueBL.csproj.CoreCompileInputs.cache
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\LeagueBL.dll
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\ref\LeagueBL.dll
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueBL\obj\Debug\net5.0\LeagueBL.pdb

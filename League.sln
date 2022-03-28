@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueBL", "LeagueBL\LeagueBL.csproj", "{7E7C2416-6194-4F0C-ACC2-A15AAA9F8269}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps", "TestApps", "{CDDD43FE-97F7-498D-98C3-32AE94B55E22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppBLtest", "ConsoleAppBLtest\ConsoleAppBLtest.csproj", "{88B30D6D-EDF4-4027-ACB6-FB4468993F6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E7C2416-6194-4F0C-ACC2-A15AAA9F8269}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E7C2416-6194-4F0C-ACC2-A15AAA9F8269}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E7C2416-6194-4F0C-ACC2-A15AAA9F8269}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E7C2416-6194-4F0C-ACC2-A15AAA9F8269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B30D6D-EDF4-4027-ACB6-FB4468993F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B30D6D-EDF4-4027-ACB6-FB4468993F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B30D6D-EDF4-4027-ACB6-FB4468993F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B30D6D-EDF4-4027-ACB6-FB4468993F6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88B30D6D-EDF4-4027-ACB6-FB4468993F6C} = {CDDD43FE-97F7-498D-98C3-32AE94B55E22}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A55CDB4C-FBC3-4705-871D-2CE74E9F65F5}
+	EndGlobalSection
+EndGlobal

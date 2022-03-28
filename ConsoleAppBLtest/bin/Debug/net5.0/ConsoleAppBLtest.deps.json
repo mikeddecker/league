@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "ConsoleAppBLtest/1.0.0": {
+        "dependencies": {
+          "LeagueBL": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleAppBLtest.dll": {}
+        }
+      },
+      "LeagueBL/1.0.0": {
+        "runtime": {
+          "LeagueBL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsoleAppBLtest/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LeagueBL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
