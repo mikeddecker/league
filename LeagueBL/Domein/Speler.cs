@@ -7,11 +7,14 @@ using LeagueBL.Exceptions;
 
 namespace LeagueBL.Domein {
     public class Speler {
-        public Speler(int id, string naam, int? lengte, int? gewicht) {
+        internal Speler(int id, string naam, int? lengte, int? gewicht) : this(naam, lengte,gewicht) {
             ZetId(id);
+        }
+        internal Speler(string naam, int? lengte, int? gewicht) {
+            
             ZetNaam(naam);
-            if (lengte != 0) { ZetLengte(lengte.Value); }
-            if (gewicht != 0) { ZetGewicht(gewicht.Value); }
+            if (lengte is not null) { ZetLengte(lengte.Value); }
+            if (gewicht.HasValue) { ZetGewicht(gewicht.Value); }
         }
 
         public int Id { get; private set; }
@@ -26,11 +29,11 @@ namespace LeagueBL.Domein {
             Naam = naam.Trim();
         }
         public void ZetLengte(int lengte) {
-            if(lengte<150) {
-                // throw new SpelerException("ZetLengte");
-                SpelerException ex = new SpelerException("ZetLengte");
-                ex.Data.Add("lengte", lengte);
-                throw ex;
+            if (lengte < 150) {
+                throw new SpelerException("ZetLengte");
+                //SpelerException ex = new SpelerException("ZetLengte");
+                //ex.Data.Add("lengte", lengte);
+                //throw ex;
             }
             Lengte = lengte;
         }
@@ -46,17 +49,27 @@ namespace LeagueBL.Domein {
             if (rugnr <= 0 || rugnr > 99) { throw new SpelerException("ZetRugnummer"); }
             Rugnummer = rugnr;
         }
-        public void VerwijderTeam() {
-            Team = null;
+        internal void VerwijderTeam() {
+            if (Team != null) {
+                Team t = Team;
+                Team = null;
+                if (t != null) {
+                    t.VerwijderSpeler(this);
+                }
+            }
+
         }
-        public void ZetTeam(Team team) {
-            if(team == null) { throw new SpelerException("ZetTeam"); }
-            if(team == Team) { throw new SpelerException("ZetTeam"); }
-            if(Team != null && Team.HeeftSpeler(this)) {
+        internal void ZetTeam(Team team) {
+            if (team == null) { throw new SpelerException("ZetTeam"); }
+            if (team == Team) { throw new SpelerException("ZetTeam"); }
+            if (Team != null && Team.HeeftSpeler(this)) {
                 Team.VerwijderSpeler(this);
             }
             if (!team.HeeftSpeler(this)) { team.VoegSpelerToe(this); }
             Team = team;
+        }
+        public override string ToString() {
+            return $"{Id},{Naam},{Lengte},{Gewicht},{Team}";
         }
 
         public override bool Equals(object obj) {

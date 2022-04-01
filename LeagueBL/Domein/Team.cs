@@ -12,7 +12,7 @@ namespace LeagueBL.Domein {
         public string Bijnaam { get; private set; }
         private List<Speler> _spelers = new List<Speler>();
 
-        public Team(int stamnummer, string naam) {
+        internal Team(int stamnummer, string naam) {
             ZetStamnummer(stamnummer);
             ZetNaam(naam);
         }
@@ -27,15 +27,15 @@ namespace LeagueBL.Domein {
         }
         public void ZetBijnNaam(string bijnaam) {
             if (string.IsNullOrWhiteSpace(bijnaam)) { throw new TeamException("ZetBijnaam"); }
-            Naam = bijnaam.Trim();
+            Bijnaam = bijnaam.Trim();
         }
-        public void VerwijderSpeler(Speler speler) {
+        internal void VerwijderSpeler(Speler speler) {
             if (speler == null) { throw new TeamException("VerwijderSpeler"); }
             if(!_spelers.Contains(speler)) { throw new TeamException("VerwijderSpeler"); }
             if (speler.Team == this) { speler.VerwijderTeam(); }
             _spelers.Remove(speler);
         }
-        public void VoegSpelerToe(Speler speler) {
+        internal void VoegSpelerToe(Speler speler) {
             if (speler == null) { throw new TeamException("VoegSpelerToe"); }
             if (_spelers.Contains(speler)) { throw new TeamException("VoegSpelerToe"); }
             _spelers.Add(speler);
@@ -43,6 +43,9 @@ namespace LeagueBL.Domein {
         }
         public bool HeeftSpeler(Speler speler) {
             return _spelers.Contains(speler);
+        }
+        public IReadOnlyList<Speler> Spelers() {
+            return _spelers.AsReadOnly();
         }
 
         public override bool Equals(object obj) {
