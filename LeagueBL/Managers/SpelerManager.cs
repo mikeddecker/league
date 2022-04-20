@@ -20,8 +20,12 @@ namespace LeagueBL.Managers {
                 Speler s = new Speler(naam, lengte, gewicht);
                 if (!repo.HeeftSpeler(s)) {
                     s = repo.SchrijfSpelerInDB(s);
+                    return s;
+                } else {
+                    throw new SpelerManagerException("RegistreerSpeler - speler bestaat al");
                 }
-                return s;
+            } catch (SpelerManagerException e) {
+                throw;
             } catch (Exception ex) {
                 throw new SpelerManagerException("RegistreerSpeler", ex);
             }

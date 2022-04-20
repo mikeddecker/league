@@ -17,7 +17,13 @@ namespace LeagueBL.Managers {
             try {
                 Team t = new Team(stamnummer, naam);
                 if (!string.IsNullOrWhiteSpace(bijnaam)) { t.ZetBijnNaam(bijnaam); }
-                if (!repo.BestaatTeam(t)) { repo.SchrijfTeamInDB(t); }
+                if (!repo.BestaatTeam(t)) {
+                    repo.SchrijfTeamInDB(t);
+                } else {
+                    throw new TeamManagerException("TeamManager.RegistreerTeam() - Team bestaat al");
+                }
+            } catch (TeamManagerException e) {
+                throw;
             } catch (Exception ex) {
                 throw new TeamManagerException("RegistreerTeam", ex);
             }

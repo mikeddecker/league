@@ -20,8 +20,25 @@ namespace LeagueDL {
         }
 
         public bool BestaatTeam(Team t) {
-            //TODO implement BestaatTeam
-            return false;
+            SqlConnection conn = GetConnection();
+            string query = "SELECT count(*) FROM dbo.Team WHERE stamnummer=@stamnummer";
+            try {
+                using (SqlCommand cmd = conn.CreateCommand()) {
+                    conn.Open();
+                    cmd.Parameters.Add(new SqlParameter("@stamnummer", System.Data.SqlDbType.Int));
+                    cmd.CommandText = query;
+                    cmd.Parameters["@stamnummer"].Value = t.Stamnummer;
+
+                    int n = (int)cmd.ExecuteScalar();
+                    //(n > 0) ? true : false;
+                    if (n > 0) { return true; } else { return false; }
+                }
+            } catch (Exception ex) {
+                throw new TeamRepoADOException("BestaatTeam");
+            }
+            finally {
+                conn.Close();
+            }
         }
 
         public void SchrijfTeamInDB(Team t) {

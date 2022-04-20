@@ -20,8 +20,25 @@ namespace LeagueDL {
         }
 
         public bool HeeftSpeler(Speler speler) {
-            //TODO implement
-            return false;
+            SqlConnection conn = GetConnection();
+            string query = "SELECT count(*) FROM dbo.Speler WHERE naam=@naam";
+            try {
+                using (SqlCommand cmd = conn.CreateCommand()) {
+                    conn.Open();
+                    cmd.Parameters.Add(new SqlParameter("@naam", System.Data.SqlDbType.NVarChar));
+                    cmd.CommandText = query;
+                    cmd.Parameters["@naam"].Value = speler.Naam;
+
+                    int n = (int)cmd.ExecuteScalar();
+                    //(n > 0) ? true : false;
+                    if (n > 0) { return true; } else { return false; }
+                }
+            } catch (Exception ex) {
+                throw new SpelerRepoADOException("BestaatSpeler", ex);
+            }
+            finally {
+                conn.Close();
+            }
         }
 
         public Speler SchrijfSpelerInDB(Speler s) {
