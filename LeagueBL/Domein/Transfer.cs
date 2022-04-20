@@ -31,12 +31,48 @@ namespace LeagueBL {
             ZetPrijs(0);
             ZetOudTeam(oudTeam);
         }
+        public Transfer(Speler speler, Team nieuwTeam, Team oudTeam, int prijs) {
+
+            ZetSpeler(speler);
+            ZetPrijs(prijs);
+            ZetOudTeam(oudTeam);
+            ZetNieuwTeam(nieuwTeam);
+        }
+
+        // speler is nieuw
+        public Transfer(Speler speler,Team nieuwTeam, int prijs) {
+
+            ZetSpeler(speler);
+            ZetPrijs(prijs);
+            ZetNieuwTeam(nieuwTeam);
+        }
+
+        //speler stopt
+        public Transfer(Speler speler, Team oudTeam) {
+
+            ZetSpeler(speler);
+            ZetPrijs(0);
+            ZetOudTeam(oudTeam);
+        }
+        //public Transfer(Speler speler, Team nieuwTeam, int prijs) {
+        //    ZetSpeler(speler);
+        //    if (nieuwTeam != null) {
+        //        ZetNieuwTeam(nieuwTeam);
+        //        ZetPrijs(prijs);
+        //    } else {
+        //        ZetPrijs(0);
+        //    }
+        //    if (speler.Team != null) {
+        //        ZetOudTeam(speler.Team);
+        //    }
+        //}
 
         public int Id { get; private set; }
         public Speler Speler { get; private set; }
         public int Prijs { get; private set; }
         public Team OudTeam { get; private set; }
         public Team NieuwTeam { get; private set; }
+
         public void ZetId(int id) {
             if (id <= 0) { throw new TransferException("ZetId"); }
             Id = id;
@@ -66,6 +102,6 @@ namespace LeagueBL {
             if (speler is null) { throw new TransferException("ZetSpeler"); }
             Speler = speler;
         }
-        
+
     }
 }
