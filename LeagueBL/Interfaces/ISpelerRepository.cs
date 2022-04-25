@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace LeagueBL.Interfaces {
     public interface ISpelerRepository {
         Speler SchrijfSpelerInDB(Speler speler);
-        bool HeeftSpeler(Speler speler);
+        bool BestaatSpeler(Speler speler);
+        void UpdateSpeler(Speler speler);
     }
 }

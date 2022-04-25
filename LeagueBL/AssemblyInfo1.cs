@@ -17,3 +17,5 @@ using System.Runtime.CompilerServices;
 
 [assembly: Guid("5f691f75-5760-4e66-9a50-ad10b8d6469c")]
 [assembly: InternalsVisibleTo("TestProjectDomein")]
+[assembly: InternalsVisibleTo("LeagueDL")]
+[assembly: InternalsVisibleTo("ConsoleAppDLtest")]

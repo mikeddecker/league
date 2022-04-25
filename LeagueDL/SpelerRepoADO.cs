@@ -19,7 +19,7 @@ namespace LeagueDL {
             return new SqlConnection(connectieString);
         }
 
-        public bool HeeftSpeler(Speler speler) {
+        public bool BestaatSpeler(Speler speler) {
             SqlConnection conn = GetConnection();
             string query = "SELECT count(*) FROM dbo.Speler WHERE naam=@naam";
             try {
@@ -52,12 +52,12 @@ namespace LeagueDL {
                     cmd.Parameters.Add(new SqlParameter("@lengte", System.Data.SqlDbType.Int));
                     cmd.Parameters.Add(new SqlParameter("@gewicht", System.Data.SqlDbType.Int));
                     cmd.Parameters["@naam"].Value = s.Naam;
-                    if (s.Lengte==null) {
+                    if (s.Lengte == null) {
                         cmd.Parameters["@lengte"].Value = DBNull.Value;
                     } else {
                         cmd.Parameters["@lengte"].Value = s.Lengte;
                     }
-                    if (s.Gewicht==null) {
+                    if (s.Gewicht == null) {
                         cmd.Parameters["@gewicht"].Value = DBNull.Value;
                     } else {
                         cmd.Parameters["@gewicht"].Value = s.Gewicht;
@@ -68,10 +68,53 @@ namespace LeagueDL {
                     return s;
                 }
             } catch (Exception ex) {
-                throw new SpelerRepoADOException("SchrijfSpelerInDB");
-            } finally {
+                throw new SpelerRepoADOException("SchrijfSpelerInDB", ex);
+            }
+            finally {
                 conn.Close();
             }
         }
+        public void UpdateSpeler(Speler speler) {
+            SqlConnection conn = GetConnection();
+            string query = "UPDATE speler " +
+                "SET naam=@naam, lengte=@lengte, gewicht=@gewicht, rugnummer=@rugnummer " +
+                "WHERE id=@id";
+            try {
+                using (SqlCommand cmd = conn.CreateCommand()) {
+                    conn.Open();
+                    cmd.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@naam", System.Data.SqlDbType.NVarChar));
+                    cmd.Parameters.Add(new SqlParameter("@lengte", System.Data.SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@gewicht", System.Data.SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@rugnummer", System.Data.SqlDbType.Int));
+                    cmd.Parameters["@id"].Value = speler.Id;
+                    cmd.Parameters["@naam"].Value = speler.Naam;
+                    if (speler.Lengte == null) {
+                        cmd.Parameters["@lengte"].Value = DBNull.Value;
+                    } else {
+                        cmd.Parameters["@lengte"].Value = speler.Lengte;
+                    }
+                    if (speler.Gewicht == null) {
+                        cmd.Parameters["@gewicht"].Value = DBNull.Value;
+                    } else {
+                        cmd.Parameters["@gewicht"].Value = speler.Gewicht;
+                    }
+                    if (speler.Rugnummer == null) {
+                        cmd.Parameters["@rugnummer"].Value = DBNull.Value;
+                    } else {
+                        cmd.Parameters["@rugnummer"].Value = speler.Rugnummer;
+                    }
+
+                    cmd.CommandText = query;
+                    cmd.ExecuteNonQuery();
+                }
+            } catch (Exception ex) {
+                throw new SpelerRepoADOException("SchrijfSpelerInDB", ex);
+            }
+            finally {
+                conn.Close();
+            }
+        }
+
     }
 }

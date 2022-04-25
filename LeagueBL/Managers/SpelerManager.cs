@@ -18,7 +18,7 @@ namespace LeagueBL.Managers {
         public Speler RegistreerSpeler(string naam, int? lengte, int? gewicht) {
             try {
                 Speler s = new Speler(naam, lengte, gewicht);
-                if (!repo.HeeftSpeler(s)) {
+                if (!repo.BestaatSpeler(s)) {
                     s = repo.SchrijfSpelerInDB(s);
                     return s;
                 } else {
@@ -28,6 +28,21 @@ namespace LeagueBL.Managers {
                 throw;
             } catch (Exception ex) {
                 throw new SpelerManagerException("RegistreerSpeler", ex);
+            }
+        }
+        public void UpdateSpeler(Speler speler) {
+            if (speler == null) { throw new SpelerManagerException("Update speler - speler is null"); }
+            try {
+                if (repo.BestaatSpeler(speler)) {
+                    //TODO check eigenschappen van speler of er wel veranderingen zijn.
+                    repo.UpdateSpeler(speler);
+                } else {
+                    throw new SpelerManagerException("UpdateSpeler - speler niet gevonden");
+                }
+            } catch (SpelerManagerException) {
+                throw;
+            } catch (Exception ex) {
+                throw new SpelerManagerException("UpdateSpeler", ex);
             }
         }
     }

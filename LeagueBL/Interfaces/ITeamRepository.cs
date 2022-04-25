@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace LeagueBL.Interfaces {
     public interface ITeamRepository {
-        bool BestaatTeam(Team t);
+        bool BestaatTeam(int stamnummer);
         void SchrijfTeamInDB(Team t);
+        Team SelecteerTeam(int stamnummer);
+        void UpdateTeam(Team team);
     }
 }
