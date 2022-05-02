@@ -12,5 +12,7 @@ namespace LeagueBL.Interfaces {
         bool BestaatSpeler(Speler speler);
         void UpdateSpeler(Speler speler);
         IReadOnlyList<SpelerInfo> SelecteerSpelers(int? id, string naam);
+        bool BestaatSpeler(int spelerId);
+        Speler SelecteerSpeler(int spelerId);
     }
 }

@@ -41,6 +41,28 @@ namespace LeagueDL {
                 conn.Close();
             }
         }
+        public bool BestaatSpeler(int spelerId) {
+            SqlConnection conn = GetConnection();
+            string query = "SELECT count(*) FROM dbo.Speler WHERE id=@id";
+            try {
+                using (SqlCommand cmd = conn.CreateCommand()) {
+                    conn.Open();
+                    cmd.Parameters.Add(new SqlParameter("@int", System.Data.SqlDbType.Int));
+                    cmd.CommandText = query;
+                    cmd.Parameters["@id"].Value = spelerId;
+
+                    int n = (int)cmd.ExecuteScalar();
+                    //(n > 0) ? true : false;
+                    if (n > 0) { return true; } else { return false; }
+                }
+            } catch (Exception ex) {
+                throw new SpelerRepoADOException("BestaatSpeler", ex);
+            }
+            finally {
+                conn.Close();
+            }
+        }
+
         public Speler SchrijfSpelerInDB(Speler s) {
             SqlConnection conn = GetConnection();
             string query = "INSERT INTO dbo.Speler(naam,lengte,gewicht) "
@@ -124,8 +146,7 @@ namespace LeagueDL {
                                 "END Teamnaam " +
                             "FROM Speler s " +
                             "LEFT JOIN Team t ON s.TeamId = t.Stamnummer ";
-            if (id.HasValue) { query += " WHERE s.Id=@id;"; }
-            else if (!string.IsNullOrWhiteSpace(naam)) { query += "WHERE s.Naam =@naam;"; }
+            if (id.HasValue) { query += " WHERE s.Id=@id;"; } else if (!string.IsNullOrWhiteSpace(naam)) { query += "WHERE s.Naam =@naam;"; }
 
             List<SpelerInfo> spelers = new List<SpelerInfo>();
             SqlConnection connection = GetConnection();
@@ -157,9 +178,74 @@ namespace LeagueDL {
                     return spelers.AsReadOnly();
                 } catch (Exception ex) {
                     throw new SpelerRepoADOException("SelecteerSpelers", ex);
-                } finally {
+                }
+                finally {
                     connection.Close();
                 }
+            }
+        }
+
+        public Speler SelecteerSpeler(int id) {
+            string query = "SELECT s.id spelerid, s.naam spelernaam, s.rugnummer spelerrugnummer, s.lengte spelerlengte, s.gewicht spelergewicht, stamnummer, t.naam teamnaam, bijnaam, ss.* " +
+                "FROM speler s " +
+                "LEFT JOIN team t ON s.TeamId= t.Stamnummer " +
+                "LEFT JOIN speler ss ON t.Stamnummer = ss.TeamId " +
+                "WHERE s.id = @id";
+
+            SqlConnection connection = GetConnection();
+            try {
+                Speler speler = null;
+                Team team = null;
+                using (SqlCommand command = connection.CreateCommand()) {
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@id", id);
+                    connection.Open();
+                    IDataReader reader = command.ExecuteReader();
+                    bool heeftTeam = false;
+                    while (reader.Read()) {
+                        if (speler == null) {
+                            int? lengte = null;
+                            int? gewicht = null;
+                            int? rugnummer = null;
+                            if (!reader.IsDBNull(reader.GetOrdinal("spelerlengte"))) { lengte = (int?)reader["spelerlengte"]; }
+                            if (!reader.IsDBNull(reader.GetOrdinal("spelergewicht"))) { gewicht = (int?)reader["spelergewicht"]; }
+                            if (!reader.IsDBNull(reader.GetOrdinal("spelerrugnummer"))) { rugnummer = (int?)reader["spelerrugnummer"]; }
+                            speler = new Speler(id, (string)reader["spelernaam"], lengte, gewicht);
+                            if (rugnummer.HasValue) { speler.ZetRugnummer((int)rugnummer); }
+                            heeftTeam = !reader.IsDBNull(reader.GetOrdinal("stamnummer"));
+                        }
+                        if (heeftTeam) {
+                            if (team == null) {
+                                int stamnummer = (int)reader["stamnummer"];
+                                string teamnaam = (string)reader["teamnaam"];
+                                string bijnaam = null;
+                                if (!reader.IsDBNull(reader.GetOrdinal("bijnaam"))) { bijnaam = (string)reader["bijnaam"]; }
+                                team = new Team(stamnummer, teamnaam);
+                                if (bijnaam != null) { team.ZetBijnNaam(bijnaam); }
+                                speler.ZetTeam(team);
+                            }
+
+                            int? lengte = null;
+                            int? gewicht = null;
+                            int? rugnummer = null;
+                            if (!reader.IsDBNull(reader.GetOrdinal("lengte"))) { lengte = (int?)reader["lengte"]; }
+                            if (!reader.IsDBNull(reader.GetOrdinal("gewicht"))) { gewicht = (int?)reader["gewicht"]; }
+                            if (!reader.IsDBNull(reader.GetOrdinal("rugnummer"))) { rugnummer = (int?)reader["rugnummer"]; }
+                            Speler teamSpeler = new Speler((int)reader["id"], (string)reader["naam"], lengte, gewicht);
+                            if (rugnummer.HasValue) { teamSpeler.ZetRugnummer((int)rugnummer); }
+                            heeftTeam = !reader.IsDBNull(reader.GetOrdinal("stamnummer"));
+                            teamSpeler.ZetTeam(team);
+                        }
+                    }
+                    reader.Close();
+
+                    return speler;
+                }
+            } catch (Exception ex) {
+                throw new SpelerRepoADOException("SelecteerSpeler", ex);
+            }
+            finally {
+
             }
         }
     }

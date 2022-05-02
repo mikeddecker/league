@@ -11,7 +11,9 @@ namespace ConsoleAppDLtest {
             string connString = @"Data Source=LAPTOP-BFPIKR71\SQLEXPRESS;Initial Catalog=LeagueDB;Integrated Security=True";
             SpelerRepoADO r = new SpelerRepoADO(connString);
             SpelerManager m = new SpelerManager(r);
-            var spelerlijst = m.SelecteerSpelers(null, "jos");
+            var x = r.SelecteerSpeler(2);
+
+            //var spelerlijst = m.SelecteerSpelers(null, "jos");
             //try {
             //    Speler s = m.RegistreerSpeler("Fred", 169, null);
             //    Console.WriteLine(s);
@@ -23,9 +25,9 @@ namespace ConsoleAppDLtest {
             //s.ZetLengte(179);
             //m.UpdateSpeler(s);
 
-            TeamRepoADO tr = new TeamRepoADO(connString);
-            TeamManager t = new TeamManager(tr);
-            var teamlijst = t.SelecteerTeams();
+            //TeamRepoADO tr = new TeamRepoADO(connString);
+            //TeamManager t = new TeamManager(tr);
+            //var teamlijst = t.SelecteerTeams();
 
             //t.RegistreerTeam(114, "Westerlo2", null);
             //Team team = new Team(114, "Westerlo2");
