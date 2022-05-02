@@ -1,4 +1,5 @@
 ﻿using LeagueBL.Domein;
+using LeagueBL.DTO;
 using LeagueBL.Interfaces;
 using LeagueDL.Exceptions;
 using System;
@@ -67,7 +68,6 @@ namespace LeagueDL {
                 conn.Close();
             }
         }
-
         public Team SelecteerTeam(int stamnummer) {
             SqlConnection conn = GetConnection();
             string query = "SELECT t.stamnummer, t.naam AS ploegnaam, t.Bijnaam, s.* " +
@@ -114,7 +114,6 @@ namespace LeagueDL {
                 conn.Close();
             }
         }
-
         public void UpdateTeam(Team team) {
             SqlConnection conn = GetConnection();
             string query = "UPDATE team " +
@@ -143,6 +142,32 @@ namespace LeagueDL {
                 conn.Close();
             }
         }
+        public IReadOnlyList<TeamInfo> SelecteerTeams() {
+            string query = "SELECT * FROM Team";
+            List<TeamInfo> teams = new List<TeamInfo>();
+            SqlConnection connection = GetConnection();
 
+            using (SqlCommand command = connection.CreateCommand()) {
+                connection.Open();
+                try {
+                    command.CommandText = query;
+                    IDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) {
+                        int stamnummer = (int)reader["Stamnummer"];
+                        string naam = (string)reader["Naam"];
+                        string bijnaam = null;
+                        if (!reader.IsDBNull(reader.GetOrdinal("Bijnaam"))) { bijnaam = (string)reader["Bijnaam"]; }
+                        TeamInfo teamInfo = new TeamInfo(stamnummer, naam, bijnaam);
+                        teams.Add(teamInfo);
+                    }
+                    return teams.AsReadOnly();
+                } catch (Exception ex) {
+                    throw new TeamRepoADOException("SelecteerTeams", ex);
+                }
+                finally {
+                    connection.Close();
+                }
+            }
+        }
     }
 }

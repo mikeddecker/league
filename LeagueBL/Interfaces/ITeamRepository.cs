@@ -1,4 +1,5 @@
 ﻿using LeagueBL.Domein;
+using LeagueBL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace LeagueBL.Interfaces {
         void SchrijfTeamInDB(Team t);
         Team SelecteerTeam(int stamnummer);
         void UpdateTeam(Team team);
+        IReadOnlyList<TeamInfo> SelecteerTeams();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using LeagueBL.Domein;
+using LeagueBL.DTO;
 using LeagueBL.Exceptions;
 using LeagueBL.Interfaces;
 using System;
@@ -9,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace LeagueBL.Managers {
     public class SpelerManager {
-        private ISpelerRepository repo;
+        private ISpelerRepository Repo;
 
         public SpelerManager(ISpelerRepository repo) {
-            this.repo = repo;
+            this.Repo = repo;
         }
 
         public Speler RegistreerSpeler(string naam, int? lengte, int? gewicht) {
             try {
                 Speler s = new Speler(naam, lengte, gewicht);
-                if (!repo.BestaatSpeler(s)) {
-                    s = repo.SchrijfSpelerInDB(s);
+                if (!Repo.BestaatSpeler(s)) {
+                    s = Repo.SchrijfSpelerInDB(s);
                     return s;
                 } else {
                     throw new SpelerManagerException("RegistreerSpeler - speler bestaat al");
@@ -33,9 +34,9 @@ namespace LeagueBL.Managers {
         public void UpdateSpeler(Speler speler) {
             if (speler == null) { throw new SpelerManagerException("Update speler - speler is null"); }
             try {
-                if (repo.BestaatSpeler(speler)) {
+                if (Repo.BestaatSpeler(speler)) {
                     //TODO check eigenschappen van speler of er wel veranderingen zijn.
-                    repo.UpdateSpeler(speler);
+                    Repo.UpdateSpeler(speler);
                 } else {
                     throw new SpelerManagerException("UpdateSpeler - speler niet gevonden");
                 }
@@ -43,6 +44,14 @@ namespace LeagueBL.Managers {
                 throw;
             } catch (Exception ex) {
                 throw new SpelerManagerException("UpdateSpeler", ex);
+            }
+        }
+        public IReadOnlyList<SpelerInfo> SelecteerSpelers(int? id, string naam) {
+            if(!id.HasValue && string.IsNullOrWhiteSpace(naam)) { throw new SpelerManagerException("SelecteerSpelers - geen input"); }
+            try {
+                return Repo.SelecteerSpelers(id, naam);
+            } catch (Exception ex) {
+                throw new SpelerManagerException("SelecteerSpelers", ex);
             }
         }
     }

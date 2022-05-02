@@ -9,8 +9,9 @@ namespace ConsoleAppDLtest {
         static void Main(string[] args) {
             Console.WriteLine("Hello World!");
             string connString = @"Data Source=LAPTOP-BFPIKR71\SQLEXPRESS;Initial Catalog=LeagueDB;Integrated Security=True";
-            //SpelerRepoADO r = new SpelerRepoADO(connString);
-            //SpelerManager m = new SpelerManager(r);
+            SpelerRepoADO r = new SpelerRepoADO(connString);
+            SpelerManager m = new SpelerManager(r);
+            var spelerlijst = m.SelecteerSpelers(null, "jos");
             //try {
             //    Speler s = m.RegistreerSpeler("Fred", 169, null);
             //    Console.WriteLine(s);
@@ -24,26 +25,30 @@ namespace ConsoleAppDLtest {
 
             TeamRepoADO tr = new TeamRepoADO(connString);
             TeamManager t = new TeamManager(tr);
-            t.RegistreerTeam(114, "Westerlo2", null);
-            Team team = new Team(114, "Westerlo2");
-            team.ZetBijnNaam("The jumping unicorns");
-            t.UpdateTeam(team);
+            var teamlijst = t.SelecteerTeams();
+
+            //t.RegistreerTeam(114, "Westerlo2", null);
+            //Team team = new Team(114, "Westerlo2");
+            //team.ZetBijnNaam("The jumping unicorns");
+            //t.UpdateTeam(team);
+            //Team team = t.SelecteerTeam(112);
+
             //try {
-                //    t.RegistreerTeam(112, "Gent2", "random");
-                //} catch(Exception ex) {
-                //    Console.WriteLine(ex.Message);
-                //}
-                //Team team = t.SelecteerTeam(112);
-                //SpelerRepoADO spelerRepoADO = new SpelerRepoADO(connString);
-                //SpelerManager spelerManager = new SpelerManager(spelerRepoADO);
-                //Speler speler = spelerManager.RegistreerSpeler("Ellen", 172, null);
-                //TeamRepoADO teamRepoADO = new TeamRepoADO(connString);
-                //TeamManager teamManager = new TeamManager(teamRepoADO);
+            //    t.RegistreerTeam(112, "Gent2", "random");
+            //} catch(Exception ex) {
+            //    Console.WriteLine(ex.Message);
+            //}
+            //Team team = t.SelecteerTeam(112);
+            //SpelerRepoADO spelerRepoADO = new SpelerRepoADO(connString);
+            //SpelerManager spelerManager = new SpelerManager(spelerRepoADO);
+            //Speler speler = spelerManager.RegistreerSpeler("Ellen", 172, null);
+            //TeamRepoADO teamRepoADO = new TeamRepoADO(connString);
+            //TeamManager teamManager = new TeamManager(teamRepoADO);
 
 
-                //ITransferRepository transferRepository = new TransferRepoADO(connString);
-                //TransferManager transferManager = new TransferManager(transferRepository);
-                //transferManager.RegistreerTransfer(speler, nieuwTeam, 100);
-            }
+            //ITransferRepository transferRepository = new TransferRepoADO(connString);
+            //TransferManager transferManager = new TransferManager(transferRepository);
+            //transferManager.RegistreerTransfer(speler, nieuwTeam, 100);
+        }
     }
 }
