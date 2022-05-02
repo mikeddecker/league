@@ -11,7 +11,8 @@ namespace ConsoleAppDLtest {
             string connString = @"Data Source=LAPTOP-BFPIKR71\SQLEXPRESS;Initial Catalog=LeagueDB;Integrated Security=True";
             SpelerRepoADO r = new SpelerRepoADO(connString);
             SpelerManager m = new SpelerManager(r);
-            var x = r.SelecteerSpeler(2);
+            var speler2 = r.SelecteerSpeler(2);
+            var speler3 = r.SelecteerSpeler(3);
 
             //var spelerlijst = m.SelecteerSpelers(null, "jos");
             //try {
