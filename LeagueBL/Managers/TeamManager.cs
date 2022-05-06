@@ -17,7 +17,7 @@ namespace LeagueBL.Managers {
         public void RegistreerTeam(int stamnummer, string naam, string bijnaam) {
             try {
                 Team t = new Team(stamnummer, naam);
-                if (!string.IsNullOrWhiteSpace(bijnaam)) { t.ZetBijnNaam(bijnaam); }
+                if (!string.IsNullOrWhiteSpace(bijnaam)) { t.ZetBijnaam(bijnaam); }
                 if (!Repo.BestaatTeam(stamnummer)) {
                     Repo.SchrijfTeamInDB(t);
                 } else {
@@ -43,11 +43,23 @@ namespace LeagueBL.Managers {
         public IReadOnlyList<TeamInfo> SelecteerTeams() {
             return Repo.SelecteerTeams();
         }
-        public void UpdateTeam(Team team) {
-            if (team == null) { throw new TeamManagerException("Update speler - speler is null"); }
+        public void UpdateTeam(TeamInfo teaminfo) {
+            if (teaminfo == null) { throw new TeamManagerException("Update speler - team is null"); }
             try {
-                if (Repo.BestaatTeam(team.Stamnummer)) {
-                    //TODO check eigenschappen van speler of er wel veranderingen zijn.
+                if (Repo.BestaatTeam(teaminfo.Stamnummer)) {
+                    bool changed = false;
+                    Team team = Repo.SelecteerTeam(teaminfo.Stamnummer);
+                    if (teaminfo.Naam != team.Naam) { team.ZetNaam(teaminfo.Naam); changed = true; }
+                    if (teaminfo.Bijnaam != team.Bijnaam) {
+                        if (!string.IsNullOrWhiteSpace(teaminfo.Bijnaam)) {
+                            team.ZetBijnaam(teaminfo.Bijnaam);
+                            changed = true;
+                        } else {
+                            team.VerwijderBijnaam();
+                            changed = true;
+                        }
+                    }
+                    if (!changed) { throw new TeamManagerException("UpdateTeam - geen update"); }
                     Repo.UpdateTeam(team);
                 } else {
                     throw new TeamManagerException("UpdateSpeler - speler niet gevonden");

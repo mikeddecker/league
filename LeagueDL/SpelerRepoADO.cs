@@ -221,7 +221,7 @@ namespace LeagueDL {
                                 string bijnaam = null;
                                 if (!reader.IsDBNull(reader.GetOrdinal("bijnaam"))) { bijnaam = (string)reader["bijnaam"]; }
                                 team = new Team(stamnummer, teamnaam);
-                                if (bijnaam != null) { team.ZetBijnNaam(bijnaam); }
+                                if (bijnaam != null) { team.ZetBijnaam(bijnaam); }
                                 speler.ZetTeam(team);
                             }
 

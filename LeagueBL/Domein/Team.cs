@@ -25,9 +25,12 @@ namespace LeagueBL.Domein {
             if (string.IsNullOrWhiteSpace(naam)) { throw new TeamException("ZetNaam"); }
             Naam = naam.Trim();
         }
-        public void ZetBijnNaam(string bijnaam) {
+        public void ZetBijnaam(string bijnaam) {
             if (string.IsNullOrWhiteSpace(bijnaam)) { throw new TeamException("ZetBijnaam"); }
             Bijnaam = bijnaam.Trim();
+        }
+        public void VerwijderBijnaam() {
+            Bijnaam = null;
         }
         internal void VerwijderSpeler(Speler speler) {
             if (speler == null) { throw new TeamException("VerwijderSpeler"); }

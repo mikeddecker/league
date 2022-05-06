@@ -1,4 +1,5 @@
 ﻿using LeagueBL.Domein;
+using LeagueBL.DTO;
 using LeagueBL.Exceptions;
 using LeagueBL.Interfaces;
 using System;
@@ -9,25 +10,34 @@ using System.Threading.Tasks;
 
 namespace LeagueBL.Managers {
     public class TransferManager {
-        private ITransferRepository repo;
-        public TransferManager(ITransferRepository repo) {
-            this.repo = repo;
+        private ITransferRepository transferRepo;
+        private ISpelerRepository spelerRepo;
+        private ITeamRepository teamRepo;
+        public TransferManager(ITransferRepository transferRepo, ISpelerRepository spelerRepository, ITeamRepository teamRepository) {
+            this.transferRepo = transferRepo;
+            this.spelerRepo = spelerRepository;
+            this.teamRepo = teamRepository;
         }
-        public void RegistreerTransfer(Speler speler, Team nieuwTeam, int prijs) {
-            if (speler == null) { throw new TransferManagerException("RegistreerTransfer - speler is null"); }
+        public void RegistreerTransfer(SpelerInfo spelerInfo, TeamInfo nieuwTeamInfo, int prijs) {
+            if (spelerInfo == null) { throw new TransferManagerException("RegistreerTransfer - speler is null"); }
             Transfer transfer = null;
             try {
+                Speler speler = spelerRepo.SelecteerSpeler(spelerInfo.Id);
                 //speler stopt
-                if (nieuwTeam == null) {
-                    if (speler.Team == null) { throw new TransferManagerException("RegistreerTransfer - team is null"); }
+                if (nieuwTeamInfo == null) {
+                    if (spelerInfo.TeamNaam == null) { throw new TransferManagerException("RegistreerTransfer - team is null"); }
                     transfer = new Transfer(speler, speler.Team); //speler + oud team
                     speler.VerwijderTeam();
-                } else if (speler.Team == null) {
-                    // nieuwe speler
+                }
+                // nieuwe speler
+                else if (spelerInfo.TeamNaam == null) {
+                    Team nieuwTeam = teamRepo.SelecteerTeam(nieuwTeamInfo.Stamnummer);
                     speler.ZetTeam(nieuwTeam);
                     transfer = new Transfer(speler, nieuwTeam, prijs);
-                } else {
-                    //klassieke transfer
+                }
+                //klassieke transfer
+                else {
+                    Team nieuwTeam = teamRepo.SelecteerTeam(nieuwTeamInfo.Stamnummer);
                     transfer = new Transfer(speler, nieuwTeam, speler.Team, prijs);
                     speler.ZetTeam(nieuwTeam);
                 }
@@ -38,7 +48,7 @@ namespace LeagueBL.Managers {
 
                 //speler.ZetTeam(nieuwTeam);
 
-                repo.SchrijfTransferInDB(transfer);
+                transferRepo.SchrijfTransferInDB(transfer);
             } catch (Exception ex) {
                 throw new TransferManagerException("RegistreerTransfer", ex);
             }

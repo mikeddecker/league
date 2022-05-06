@@ -90,7 +90,7 @@ namespace LeagueDL {
                             string bijnaam = null;
                             if (!reader.IsDBNull(reader.GetOrdinal("bijnaam"))) bijnaam = (string)reader["bijnaam"];
                             team = new Team(stamnummer, naam);
-                            if (bijnaam != null) { team.ZetBijnNaam(bijnaam); }
+                            if (bijnaam != null) { team.ZetBijnaam(bijnaam); }
                         }
                         if (!reader.IsDBNull(reader.GetOrdinal("id"))) { // DB negeert upper en lower case
                             int? lengte = null;

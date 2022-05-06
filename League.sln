@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectDomein", "TestPr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueDL", "LeagueDL\LeagueDL.csproj", "{087B58F4-D623-41A5-AF67-E7959B5F3A73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppDLtest", "ConsoleAppDLtest\ConsoleAppDLtest.csproj", "{F1725ADE-F268-43F2-8720-C7F18A8E7928}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppDLtest", "ConsoleAppDLtest\ConsoleAppDLtest.csproj", "{F1725ADE-F268-43F2-8720-C7F18A8E7928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueUI", "LeagueUI\LeagueUI.csproj", "{CCAC3D1F-E7D3-4F60-ADF5-FE6E5EDA4522}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{F1725ADE-F268-43F2-8720-C7F18A8E7928}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1725ADE-F268-43F2-8720-C7F18A8E7928}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1725ADE-F268-43F2-8720-C7F18A8E7928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCAC3D1F-E7D3-4F60-ADF5-FE6E5EDA4522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCAC3D1F-E7D3-4F60-ADF5-FE6E5EDA4522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCAC3D1F-E7D3-4F60-ADF5-FE6E5EDA4522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCAC3D1F-E7D3-4F60-ADF5-FE6E5EDA4522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

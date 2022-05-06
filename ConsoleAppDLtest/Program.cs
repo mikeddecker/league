@@ -3,16 +3,17 @@ using System;
 using LeagueBL.Managers;
 using LeagueBL.Domein;
 using LeagueBL.Interfaces;
+using LeagueBL.DTO;
 
 namespace ConsoleAppDLtest {
     class Program {
         static void Main(string[] args) {
             Console.WriteLine("Hello World!");
             string connString = @"Data Source=LAPTOP-BFPIKR71\SQLEXPRESS;Initial Catalog=LeagueDB;Integrated Security=True";
-            SpelerRepoADO r = new SpelerRepoADO(connString);
-            SpelerManager m = new SpelerManager(r);
-            var speler2 = r.SelecteerSpeler(2);
-            var speler3 = r.SelecteerSpeler(3);
+            SpelerRepoADO spelerRepo = new SpelerRepoADO(connString);
+            SpelerManager m = new SpelerManager(spelerRepo);
+            var speler2 = spelerRepo.SelecteerSpeler(2);
+            var speler3 = spelerRepo.SelecteerSpeler(3);
 
             //var spelerlijst = m.SelecteerSpelers(null, "jos");
             //try {
@@ -26,8 +27,8 @@ namespace ConsoleAppDLtest {
             //s.ZetLengte(179);
             //m.UpdateSpeler(s);
 
-            //TeamRepoADO tr = new TeamRepoADO(connString);
-            //TeamManager t = new TeamManager(tr);
+            TeamRepoADO teamRepo = new TeamRepoADO(connString);
+            TeamManager t = new TeamManager(teamRepo);
             //var teamlijst = t.SelecteerTeams();
 
             //t.RegistreerTeam(114, "Westerlo2", null);
@@ -47,11 +48,12 @@ namespace ConsoleAppDLtest {
             //Speler speler = spelerManager.RegistreerSpeler("Ellen", 172, null);
             //TeamRepoADO teamRepoADO = new TeamRepoADO(connString);
             //TeamManager teamManager = new TeamManager(teamRepoADO);
+            SpelerInfo spelerinfo = new SpelerInfo(4, "Fred", 169, null, null, null);
+            TeamInfo teamInfo = new TeamInfo(114, "Westerlo2", "The Jumping Unicorns");
 
-
-            //ITransferRepository transferRepository = new TransferRepoADO(connString);
-            //TransferManager transferManager = new TransferManager(transferRepository);
-            //transferManager.RegistreerTransfer(speler, nieuwTeam, 100);
+            ITransferRepository transferRepository = new TransferRepoADO(connString);
+            TransferManager transferManager = new TransferManager(transferRepository, spelerRepo, teamRepo);
+            transferManager.RegistreerTransfer(spelerinfo, teamInfo, 100);
         }
     }
 }

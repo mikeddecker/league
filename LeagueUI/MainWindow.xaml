@@ -1,0 +1,24 @@
+﻿<Window x:Class="LeagueUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeagueUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Name="RegistreerSpelerButton" Content="Registreer Speler" Click="RegistreerSpelerButton_Click"/>
+        <Button Grid.Row="1" Name="UpdateSpelerButton" Content="Update Speler" Click="UpdateSpelerButton_Click"/>
+        <Button Grid.Row="2" Name="RegistreerTeamButton" Content="Registreer Team" Click="RegistreerTeamButton_Click"/>
+        <Button Grid.Row="3" Name="UpdateTeamButton" Content="Update Team" Click="UpdateTeamButton_Click"/>
+        <Button Grid.Row="4" Name="RegistreerTransferButton" Content="Registreer Transfer" Click="RegistreerTransferButton_Click"/>
+
+    </Grid>
+</Window>
