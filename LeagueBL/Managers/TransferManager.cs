@@ -47,7 +47,7 @@ namespace LeagueBL.Managers {
                 //Transfer transfer = new Transfer(speler, nieuwTeam, prijs);
 
                 //speler.ZetTeam(nieuwTeam);
-
+                
                 transferRepo.SchrijfTransferInDB(transfer);
             } catch (Exception ex) {
                 throw new TransferManagerException("RegistreerTransfer", ex);

@@ -15,5 +15,8 @@ namespace LeagueBL.DTO {
         public int Stamnummer { get; set; }
         public string Naam { get; set; }
         public string Bijnaam { get; set; }
+        public override string ToString() {
+            return $"{Stamnummer}, {Naam}, {Bijnaam}";
+        }
     }
 }

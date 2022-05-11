@@ -1,0 +1,31 @@
+﻿<Window x:Class="LeagueUI.RegistreerSpelerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeagueUI"
+        mc:Ignorable="d"
+        Title="RegistreerSpeler" Height="200" Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Naam"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Lengte"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Gewicht"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Rugnummer"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Name="NaamTextBox" Margin="5,5,5,5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="LengteTextBox" Margin="5,5,5,5" InputScope="Digits"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="GewichtTextBox" Margin="5,5,5,5" InputScope="Digits"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="RugnummerTextBox" Margin="5,5,5,5" InputScope="Digits"/>
+        <Button Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Name="RegistreerSpelerButton" Margin="5,5,5,5" Content="Registreer Speler" Click="RegistreerSpelerButton_Click"/>
+    </Grid>
+</Window>

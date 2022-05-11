@@ -20,8 +20,8 @@ C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAp
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.AssemblyInfoInputs.cache
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.AssemblyInfo.cs
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.csproj.CoreCompileInputs.cache
+C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.csproj.CopyComplete
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.dll
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ref\ConsoleAppDLtest.dll
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.pdb
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.genruntimeconfig.cache
-C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\ConsoleAppDLtest\obj\Debug\net5.0\ConsoleAppDLtest.csproj.CopyComplete

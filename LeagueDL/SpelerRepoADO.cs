@@ -47,7 +47,7 @@ namespace LeagueDL {
             try {
                 using (SqlCommand cmd = conn.CreateCommand()) {
                     conn.Open();
-                    cmd.Parameters.Add(new SqlParameter("@int", System.Data.SqlDbType.Int));
+                    cmd.Parameters.Add(new SqlParameter("@id", System.Data.SqlDbType.Int));
                     cmd.CommandText = query;
                     cmd.Parameters["@id"].Value = spelerId;
 

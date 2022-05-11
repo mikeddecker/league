@@ -21,5 +21,8 @@ namespace LeagueBL.DTO {
         public int? Gewicht { get; set; }
         public int? Rugnummer { get; set; }
         public string TeamNaam { get; set; }
+        public override string ToString() {
+            return $"{Naam},{Id},{TeamNaam}";
+        }
     }
 }

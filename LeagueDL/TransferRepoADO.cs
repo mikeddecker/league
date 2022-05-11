@@ -40,18 +40,19 @@ namespace LeagueDL {
                     cmdTransfer.Parameters.Add(new SqlParameter("@nieuwteamid", System.Data.SqlDbType.NVarChar));
                     cmdTransfer.CommandText = queryTransfer;
                     cmdTransfer.Parameters["@spelerid"].Value = transfer.Speler.Id;
+                    cmdTransfer.Parameters["@prijs"].Value = transfer.Prijs;
                     if (transfer.OudTeam != null) {
-                        cmdTransfer.Parameters["@prijs"].Value = transfer.Prijs;
-                    } else {
-                        cmdTransfer.Parameters["@prijs"].Value = DBNull.Value;
-                    }
-                    if (transfer.NieuwTeam != null) {
                         cmdTransfer.Parameters["@oudteamid"].Value = transfer.OudTeam.Stamnummer;
                     } else {
                         cmdTransfer.Parameters["@oudteamid"].Value = DBNull.Value;
                     }
+                    if (transfer.NieuwTeam != null) {
+                        cmdTransfer.Parameters["@nieuwteamid"].Value = transfer.NieuwTeam.Stamnummer;
+                    } else {
+                        cmdTransfer.Parameters["@nieuwteamid"].Value = DBNull.Value;
+                    }
 
-                    cmdTransfer.Parameters["@nieuwteamid"].Value = transfer.NieuwTeam.Stamnummer;
+                    
                     int transferId = (int)cmdTransfer.ExecuteScalar();
                     transfer.ZetId(transferId);
 
@@ -60,7 +61,7 @@ namespace LeagueDL {
                     cmdSpeler.Parameters.Add(new SqlParameter("@teamid", System.Data.SqlDbType.Int));
                     cmdSpeler.CommandText = querySpeler;
                     cmdSpeler.Parameters["@id"].Value = transfer.Speler.Id;
-                    if (transfer.NieuwTeam == null) {
+                    if (transfer.NieuwTeam != null) {
                         cmdSpeler.Parameters["@teamid"].Value = transfer.NieuwTeam.Stamnummer;
                     } else {
                         cmdSpeler.Parameters["@teamid"].Value = DBNull.Value;

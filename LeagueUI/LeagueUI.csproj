@@ -6,4 +6,13 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="UpdateSpelerWindow.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LeagueBL\LeagueBL.csproj" />
+    <ProjectReference Include="..\LeagueDL\LeagueDL.csproj" />
+  </ItemGroup>
+
 </Project>

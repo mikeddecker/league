@@ -7,7 +7,33 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="RegistreerSpelerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="RegistreerTransferWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SelecteerSpelerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SpelerUpdateWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="RegistreerSpelerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="RegistreerTransferWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SelecteerSpelerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SpelerUpdateWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

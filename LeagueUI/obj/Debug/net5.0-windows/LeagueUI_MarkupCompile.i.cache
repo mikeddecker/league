@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\miked\Documents\school\HOGENT\semester 2\ProgGevorderd\League\LeagueUI\App.xaml
-11407045341
+51229076673
 
-5475937384
-193-1891726104
-MainWindow.xaml;
+91315480833
+196-1475294964
+MainWindow.xaml;RegistreerSpelerWindow.xaml;RegistreerTransferWindow.xaml;SelecteerSpelerWindow.xaml;SpelerUpdateWindow.xaml;
 
 True
 

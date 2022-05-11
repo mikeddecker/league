@@ -43,7 +43,9 @@ namespace LeagueBL.Managers {
                     if (speler.Lengte.HasValue && speler.Lengte != spelerinfo.Lengte) { speler.ZetLengte((int)spelerinfo.Lengte); changed = true; }
                     if (speler.Gewicht.HasValue && speler.Gewicht != spelerinfo.Lengte) { speler.ZetGewicht((int)spelerinfo.Gewicht); changed = true; }
                     if (speler.Rugnummer.HasValue && speler.Rugnummer != spelerinfo.Rugnummer) { speler.ZetRugnummer((int)spelerinfo.Rugnummer); changed = true; }
-
+                    if (spelerinfo.Rugnummer.HasValue && !speler.Rugnummer.HasValue) { speler.ZetRugnummer((int)spelerinfo.Rugnummer); changed = true; }
+                    if (spelerinfo.Gewicht.HasValue && !speler.Gewicht.HasValue) { speler.ZetGewicht((int)spelerinfo.Gewicht); changed = true; }
+                    if (spelerinfo.Lengte.HasValue && !speler.Lengte.HasValue) { speler.ZetLengte((int)spelerinfo.Lengte); changed = true; }
                     if (!changed) { throw new SpelerManagerException("UpdateSpeler - geen veranderingen"); }
                     Repo.UpdateSpeler(speler);
 

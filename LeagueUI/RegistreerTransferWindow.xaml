@@ -1,0 +1,53 @@
+﻿<Window x:Class="LeagueUI.RegistreerTransferWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LeagueUI"
+        mc:Ignorable="d"
+        Title="Registreer Transfer" Height="200" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="5" BorderThickness="1" BorderBrush="Gray" Margin="2,2,2,2"/>
+            <Label Grid.Row="0" Grid.Column="0" Content="SpelerID" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Name="ZoekSpelerIDTextBox" Margin="5,5,5,5"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="Naam" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="3" Name="ZoekNaamTextBox" Margin="5,5,5,5"/>
+            <Button Grid.Row="0" Grid.Column="4" Name="ZoekSpelerButton" Content="Zoek Speler" Margin="5,5,5,5" Click="ZoekSpelerButton_Click"/>
+        </Grid>
+        <Border Grid.Row="1" Grid.Column="0" Margin="2,2,2,2" Grid.ColumnSpan="5" BorderThickness="1" BorderBrush="Gray" Grid.RowSpan="3"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Speler" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="SpelerID" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Name="SpelerIDTextBox" Margin="5,5,5,5" IsReadOnly="True"/>
+        <Label Grid.Row="1" Grid.Column="3" Content="Nieuw Team" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Grid.Column="1" Content="Naam" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="2" Name="NaamTextBox" Margin="5,5,5,5" IsReadOnly="True" />
+        <ComboBox Grid.Row="2" Grid.Column="3" Name="NieuwTeamComboBox" Margin="5,5,5,5" Grid.ColumnSpan="2"/>
+        <Label Grid.Row="3" Grid.Column="1" Content="Huidig Team" VerticalAlignment="Center" />
+        <TextBox Grid.Row="3" Grid.Column="2" Name="HuidigTeamTextBox" Margin="5,5,5,5" IsReadOnly="True"/>
+        <Label Grid.Row="3" Grid.Column="3" Content="Prijs" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="4" Name="PrijsTextBox" Margin="5,5,5,5" InputScope="Number" />
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Content="Transfer" Margin="5,5,5,5" Click="TransferButton_Click"/>
+    </Grid>
+</Window>

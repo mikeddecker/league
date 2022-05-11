@@ -35,7 +35,7 @@ namespace LeagueDL {
                     if (n > 0) { return true; } else { return false; }
                 }
             } catch (Exception ex) {
-                throw new TeamRepoADOException("BestaatTeam");
+                throw new TeamRepoADOException("BestaatTeam", ex);
             }
             finally {
                 conn.Close();
@@ -62,7 +62,7 @@ namespace LeagueDL {
                     cmd.ExecuteNonQuery();
                 }
             } catch (Exception ex) {
-                throw new TeamRepoADOException("SchrijfSpelerInDB");
+                throw new TeamRepoADOException("SchrijfSpelerInDB", ex);
             }
             finally {
                 conn.Close();

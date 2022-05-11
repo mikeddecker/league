@@ -23,11 +23,13 @@ namespace LeagueUI {
         }
 
         private void RegistreerSpelerButton_Click(object sender, RoutedEventArgs e) {
-
+            RegistreerSpelerWindow registreerSpelerWindow = new RegistreerSpelerWindow();
+            registreerSpelerWindow.ShowDialog();
         }
 
         private void UpdateSpelerButton_Click(object sender, RoutedEventArgs e) {
-
+            SpelerUpdateWindow spelerUpdateWindow = new SpelerUpdateWindow();
+            spelerUpdateWindow.ShowDialog();
         }
 
         private void RegistreerTeamButton_Click(object sender, RoutedEventArgs e) {
@@ -39,7 +41,8 @@ namespace LeagueUI {
         }
 
         private void RegistreerTransferButton_Click(object sender, RoutedEventArgs e) {
-
+            RegistreerTransferWindow registreerTransferWindow = new RegistreerTransferWindow();
+            registreerTransferWindow.ShowDialog();
         }
     }
 }
