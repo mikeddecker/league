@@ -117,7 +117,7 @@ namespace LeagueUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LeagueUI;V1.0.0.0;component/spelerupdatewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LeagueUI;component/spelerupdatewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\SpelerUpdateWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

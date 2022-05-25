@@ -93,7 +93,7 @@ namespace LeagueUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LeagueUI;V1.0.0.0;component/registreerspelerwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LeagueUI;component/registreerspelerwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\RegistreerSpelerWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

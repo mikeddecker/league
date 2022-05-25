@@ -117,7 +117,7 @@ namespace LeagueUI {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/LeagueUI;V1.0.0.0;component/registreertransferwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/LeagueUI;component/registreertransferwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\RegistreerTransferWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
